@@ -26,11 +26,14 @@ RUN /bin/bash -l -c "gem install bundler"
 RUN /bin/bash -l -c "gem install rake"
 RUN apt-get -y -q install git
 WORKDIR /usr/src/app
-COPY . .
 RUN apt-get -y -q install build-essential patch ruby-dev zlib1g-dev liblzma-dev
 RUN apt-get -y -q install libxml2-dev
 RUN apt-get install -y -q libpq-dev
+COPY . .
 RUN /bin/bash -l -c "bundle install"
-# RUN /bin/bash -l -c "rake db:create"
-# RUN /bin/bash -l -c "rake db:migrate"
-# RUN /bin/bash -l -c "rake db:seed"
+RUN /bin/bash -l -c "su - postgres;"
+WORKDIR /usr/src/app
+# Run this within the psql interpretter to make stuff utf8
+# Doesnt work
+# RUN /bin/bash -l -c 'sh /usr/src/app/udpate-utf8.sh'
+# RUN /bin/bash -l -c "rake db:create; rake db:migrate; rake db:seed;'
