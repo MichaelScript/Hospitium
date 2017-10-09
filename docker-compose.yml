@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  hospitium:
+    container_name: "hospitium"
+    image: hospitium
+    build: "."
+    restart: "always"
+    expose:
+      - 3000
+    volumes:
+      - ./:/usr/src/app/
+    tty: true
