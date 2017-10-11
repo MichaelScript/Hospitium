@@ -19,6 +19,23 @@ You can support the project by:
 - Donating to [Apple Wood Rescue](http://www.applewoodrescue.org/donate/)
 - Contributing to the development of Hospitium on [GitHub](https://github.com/ninetwentyfour/Hospitium)
 
+## Running Hospitium with Docker
+> Currently the build process isn't completely automated, however it's shorter than manually installing.
+1. Run `docker-compose up`
+2. In a different terminal run `docker exec -it bash -l`
+3. Within this new shell run the following:
+```
+service postgresql start
+# Switch to the postgres user
+su - postgres
+cd /usr/src/app
+# Need to change postgres to use utf-8 rather than ascii by default
+./update-utf8.sh
+# If it hasn't been created previously
+rake db:create; rake db:migrate; rake db:seed;
+bundle exec rails server Puma -b 0.0.0.0 -p 3000;
+```
+
 ## How to Install
 
 1 - There are several dependencies on other apps/services:
