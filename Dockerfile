@@ -7,6 +7,7 @@ RUN    apt-get -y -q upgrade
 
 ENV LANG en_US.utf8
 
+RUN apt-get -y -q update
 RUN apt-get install -y -q postgresql postgresql-contrib
 RUN apt-get install -y -q memcached
 RUN apt-get install -y -q redis-server

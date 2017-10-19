@@ -25,6 +25,8 @@ You can support the project by:
 2. In a different terminal run `docker exec -it hospitium bash -l`
 3. Within this new shell run the following:
 ```
+mkdir /usr/src/app/tmp
+chmod 777 /usr/src/app/tmp
 service postgresql start
 # Switch to the postgres user
 su - postgres
