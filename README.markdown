@@ -37,6 +37,7 @@ cd /usr/src/app
 rake db:create; rake db:migrate; rake db:seed;
 bundle exec rails server Puma -b 0.0.0.0 -p 3000;
 ```
+In a browser go to localhost:3000
 
 ## How to Install
 
