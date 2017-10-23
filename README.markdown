@@ -22,7 +22,7 @@ You can support the project by:
 ## Running Hospitium with Docker
 > Currently the build process isn't completely automated, however it's shorter than manually installing.
 1. Run `docker-compose up`
-2. In a different terminal run `docker exec -it hospitium bash -l`
+2. In a different terminal run `docker exec -u root -it hospitium bash -l`
 3. Within this new shell run the following:
 ```
 mkdir /usr/src/app/tmp
