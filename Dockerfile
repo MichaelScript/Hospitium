@@ -32,9 +32,11 @@ RUN apt-get -y -q install libxml2-dev
 RUN apt-get install -y -q libpq-dev
 COPY . .
 RUN /bin/bash -l -c "bundle install"
-RUN /bin/bash -l -c "su - postgres;"
+USER postgres
 WORKDIR /usr/src/app
-# Run this within the psql interpretter to make stuff utf8
-# Doesnt work
-# RUN /bin/bash -l -c 'sh /usr/src/app/udpate-utf8.sh'
-# RUN /bin/bash -l -c "rake db:create; rake db:migrate; rake db:seed;'
+RUN /bin/bash -l -c 'service postgresql start; bash update-utf8.sh;'
+RUN /bin/bash -l -c "service postgresql start; rake db:create; rake db:migrate; rake db:seed;"
+RUN /bin/bash -l -c "mkdir -p /usr/src/app/tmp"
+# Change these permissions later, this is terrible
+USER root
+RUN /bin/bash -l -c "chmod 777 /usr/src/app/tmp"

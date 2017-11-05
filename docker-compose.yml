@@ -5,7 +5,7 @@ services:
     container_name: "hospitium"
     image: hospitium
     build: "."
-    # command: "sh start.sh"
+    command: "bundle exec rails server Puma -b 0.0.0.0 -p 3000;"
     restart: "always"
     ports:
       - 3000:3000
