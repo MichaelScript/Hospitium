@@ -5,7 +5,8 @@ services:
     container_name: "hospitium"
     image: hospitium
     build: "."
-    command: "bundle exec rails server Puma -b 0.0.0.0 -p 3000;"
+    user: "postgres"
+    command: bash -l -c "service postgresql start; bundle exec rails server Puma -b 0.0.0.0 -p 3000;"
     restart: "always"
     ports:
       - 3000:3000
